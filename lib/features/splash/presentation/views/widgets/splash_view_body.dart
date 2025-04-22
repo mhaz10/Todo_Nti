@@ -27,21 +27,11 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   Widget build(BuildContext context) {
 
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    double imageWidth = 334;
-    double imageHeight = 433;
-
-    if (screenWidth < 400) {
-      imageWidth = screenWidth * 0.8;
-      imageHeight = imageWidth * (433 / 334); // maintain aspect ratio
-    }
-
     return Center(
       child: Image.asset(
         kSplashLogo,
-        width: imageWidth,
-        height: imageHeight,
+        width: 334,
+        height: 433,
         fit: BoxFit.cover,
       ),
     );
