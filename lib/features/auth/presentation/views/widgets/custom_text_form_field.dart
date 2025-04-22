@@ -18,7 +18,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         obscureText: isObscure,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "This field is required";
+          }
+          if (widget.isPassword && value.length < 6) {
+            return 'Password must be at least 6 characters';
+          }
+          return null;
+        },
         cursorColor: Color(0xFFCDCDCD),
         decoration: InputDecoration(
           hintText: widget.hintText,
@@ -26,12 +36,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             setState(() {
               isObscure = !isObscure;
             });
-          }, icon: isObscure ? Icon(Icons.visibility) : Icon(Icons.visibility_off)) : null,
+          }, icon: isObscure ? Icon(Icons.visibility_off) : Icon(Icons.visibility) ) : null,
           hintStyle: const TextStyle(
             color: Color(0xFF939393),
             fontSize: 16,
           ),
           contentPadding: const EdgeInsets.all(20),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            borderSide: const BorderSide(
+              color: Color(0xFFCDCDCD),
+              width: 2.0,
+            ),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),
             borderSide: const BorderSide(

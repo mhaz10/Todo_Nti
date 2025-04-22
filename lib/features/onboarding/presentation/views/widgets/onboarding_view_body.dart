@@ -14,7 +14,7 @@ class OnboardingViewBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(kOnBoardingLogo, width: 300, height: 342,),
+        Image.asset(kOnBoardingLogo, width: 300, height: 330,),
         const SizedBox(height: 20),
         const Center(
           child: Text(
