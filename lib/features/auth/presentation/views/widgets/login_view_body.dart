@@ -31,7 +31,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               CustomButton(text: 'Login', color: Color(0xFF149954),
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-                    //GoRouter.of(context).push(AppRouter.kHomeView);
+                    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                   }
                 },),
               const SizedBox(height: 14,),

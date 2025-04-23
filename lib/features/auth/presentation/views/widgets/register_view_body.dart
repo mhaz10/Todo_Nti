@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import 'custom_text_form_field.dart';
 
@@ -34,7 +35,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 color: Color(0xFF149954),
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-                    //GoRouter.of(context).push(AppRouter.kHomeView);
+                    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
                   }
                 },),
               const SizedBox(height: 14,),
