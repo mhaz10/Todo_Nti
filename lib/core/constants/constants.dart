@@ -7,3 +7,19 @@ const String kOnBoardingLogo = 'assets/images/OBJECTS012.png';
 const String kAddIcon = 'assets/images/Plus - Iconly Pro.svg';
 
 const String kEmptyTasksImage = 'assets/images/55024598_9264826 1.png';
+
+const String kProfileIcon = 'assets/images/Profile - Iconly Pro.svg';
+
+const String kLockIcon = 'assets/images/Lock - Iconly Pro.svg';
+
+const String kSettingIcon = 'assets/images/Setting - Iconly Pro.svg';
+
+const String kArrowIcon = 'assets/images/Arrow - Up 2 - Iconly Pro.svg';
+
+const String kArrowBackIcon = 'assets/images/Arrow - Back - Icon.svg';
+
+const String kAddTaskIcon = 'assets/images/Paper Plus - Iconly Pro.svg';
+
+const int kPrimaryColor = 0xFFF3F5F4;
+
+const int kButtonColor = 0xFF149954;

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_nti/core/utils/styles.dart';
+
+import '../../../../../core/constants/constants.dart';
 
 class TasksBuilderFailure extends StatelessWidget {
   const TasksBuilderFailure({super.key});
@@ -6,11 +9,15 @@ class TasksBuilderFailure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const Text('There are no tasks yet, \n Press the button \n To add New Task ', textAlign: TextAlign.center,),
         const SizedBox(height: 30,),
-        Image.asset('kEmptyTasksImage')
+        const Text(
+          'There are no tasks yet, \n Press the button \n To add New Task ',
+          textAlign: TextAlign.center,
+          style: Styles.textStyle16,),
+        const SizedBox(height: 30,),
+        Image.asset(kEmptyTasksImage)
       ],
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_app_nti/core/constants/constants.dart';
 import 'package:todo_app_nti/core/utils/app_router.dart';
 
 void main() {
@@ -15,7 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFF3F5F4),
+        appBarTheme: AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+        ),
+        scaffoldBackgroundColor: Color(kPrimaryColor),
+        fontFamily: GoogleFonts.lexendDeca().fontFamily
       ),
     );
   }

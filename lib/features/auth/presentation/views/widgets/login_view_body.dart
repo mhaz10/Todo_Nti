@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app_nti/core/utils/app_router.dart';
+import 'package:todo_app_nti/core/utils/styles.dart';
 import 'package:todo_app_nti/core/widgets/custom_button.dart';
-
-import 'custom_text_form_field.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -38,7 +38,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                Text('Don’t Have An Account?'),
+                Text('Don’t Have An Account?', style: Styles.textStyle14.copyWith(
+                  color: const Color(0xFF6E6A7C)
+                ),),
                 const SizedBox(width: 8),
                 TextButton(
                   onPressed: () {

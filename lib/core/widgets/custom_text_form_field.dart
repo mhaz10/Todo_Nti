@@ -32,6 +32,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         cursorColor: Color(0xFFCDCDCD),
         decoration: InputDecoration(
           hintText: widget.hintText,
+          filled: true,
+          fillColor: Colors.white,
           suffixIcon: widget.isPassword ? IconButton(onPressed: () {
             setState(() {
               isObscure = !isObscure;

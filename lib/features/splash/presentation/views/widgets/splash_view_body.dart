@@ -30,9 +30,8 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     return Center(
       child: Image.asset(
         kSplashLogo,
-        width: 334,
-        height: 433,
-        fit: BoxFit.cover,
+        width: MediaQuery.of(context).size.width * 0.8906,
+        height: MediaQuery.of(context).size.height * 0.5332,
       ),
     );
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/add_task_view_body.dart';
+
+import '../../../../core/constants/constants.dart';
 
 class AddTaskView extends StatelessWidget {
   const AddTaskView({super.key});
@@ -8,8 +11,9 @@ class AddTaskView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: SvgPicture.asset(kArrowBackIcon),
           onPressed: () {
             Navigator.pop(context);
           },

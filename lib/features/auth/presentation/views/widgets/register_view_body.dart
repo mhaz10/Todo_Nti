@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_router.dart';
+import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import 'custom_text_form_field.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
@@ -42,7 +43,9 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Already Have An Account?'),
+                  Text('Already Have An Account?', style: Styles.textStyle14.copyWith(
+                      color: const Color(0xFF6E6A7C)
+                  ),),
                   const SizedBox(width: 8),
                   TextButton(
                     onPressed: () {

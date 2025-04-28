@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app_nti/core/constants/constants.dart';
+import 'package:todo_app_nti/core/utils/styles.dart';
 
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -20,26 +21,21 @@ class OnboardingViewBody extends StatelessWidget {
           child: Text(
             'Welcome To \n Do It !',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Styles.textStyle24,
           ),
         ),
         const SizedBox(height: 20),
-        const Center(
+        Center(
           child: Text(
             'Ready to conquer your tasks? Let\'s Do \n It together.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: Color(0xFF6E6A7C),
-              fontWeight: FontWeight.w500,
+            style: Styles.textStyle16.copyWith(
+              color: Color(0xFF6E6A7C)
             ),
           ),
         ),
         CustomButton(
-          text: 'Let\'s Start', color: Color(0xFF149954),
+          text: 'Let\'s Start', color: Color(kButtonColor),
           onTap: () {
             GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
         },)

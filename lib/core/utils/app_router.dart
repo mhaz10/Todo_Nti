@@ -1,12 +1,13 @@
 import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/features/auth/presentation/views/widgets/register_view_body.dart';
-import 'package:todo_app_nti/features/home/presentation/views/widgets/add_task_view_body.dart';
-import 'package:todo_app_nti/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/widgets/change_password.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/widgets/settings.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/widgets/update_profile.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/home/presentation/views/add_task_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -15,6 +16,10 @@ abstract class AppRouter {
   static const kRegisterView = '/RegisterView';
   static const kHomeView = '/HomeView';
   static const kAddTaskView = '/AddTaskView';
+  static const kProfileView = '/ProfileView';
+  static const kUpdateProfile = '/UpdateProfile';
+  static const kChangePassword = '/ChangePassword';
+  static const kSettings = '/Settings';
 
   static final router = GoRouter(
     routes: [
@@ -46,6 +51,26 @@ abstract class AppRouter {
       GoRoute(
         path: kAddTaskView,
         builder: (context, state) => const AddTaskView(),
+      ),
+
+      GoRoute(
+        path: kProfileView,
+        builder: (context, state) => const ProfileView(),
+      ),
+
+      GoRoute(
+        path: kUpdateProfile,
+        builder: (context, state) => const UpdateProfile(),
+      ),
+
+      GoRoute(
+        path: kChangePassword,
+        builder: (context, state) => const ChangePassword(),
+      ),
+
+      GoRoute(
+        path: kSettings,
+        builder: (context, state) => const Settings(),
       ),
 
     ],

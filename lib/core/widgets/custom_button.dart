@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/constants.dart';
+
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, required this.color, this.onTap});
 
@@ -17,7 +19,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Color(0xFF149954).withAlpha(180),
+              color: Color(kButtonColor).withAlpha(180),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
