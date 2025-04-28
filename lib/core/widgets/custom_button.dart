@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isActive ? onTap : null,
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: isActive ? color : color.withAlpha(127),

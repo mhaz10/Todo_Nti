@@ -15,8 +15,8 @@ class AddTaskViewBody extends StatefulWidget {
 
 class _AddTaskViewBodyState extends State<AddTaskViewBody> {
 
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  String? title;
+  String? description;
   String? groupValue;
   String? selectedDate;
   String? selectedTime;
@@ -41,19 +41,38 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
               ),
             ),
             const SizedBox(height: 30,),
-            CustomTaskField(hintText: 'Title',maxLines: 1),
+            CustomTaskField(
+              hintText: 'Title',
+              maxLines: 1,
+              onChanged: (value) {
+                setState(() {
+                  title = value;
+                });
+              },
+            ),
             const SizedBox(height: 20,),
-            CustomTaskField(hintText: 'Description'),
+            CustomTaskField(
+              hintText: 'Description',
+              onChanged: (value) {
+                setState(() {
+                  description = value;
+                });
+              },
+            ),
             const SizedBox(height: 20,),
             CustomDropdown(
               onChanged: (value) {
-              groupValue = value;
+                setState(() {
+                  groupValue = value;
+                });
             },),
             const SizedBox(height: 20,),
             DateTimeCard(
               onDateTimeSelected: (date, time) {
-                selectedDate = date;
-                selectedTime = time;
+                setState(() {
+                  selectedDate = date;
+                  selectedTime = time;
+                });
               },
             ),
             const SizedBox(height: 20,),
@@ -61,6 +80,15 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
               text: 'Add Task',
               color: Color(0xFF149954),
               isActive: isActive(),
+              onTap: () {
+                if(isActive()) {
+                  print('Title: $title');
+                  print('Description: $description');
+                  print('Group: $groupValue');
+                  print('Date: $selectedDate');
+                  print('Time: $selectedTime');
+                }
+              },
             )
           ],
         ),
@@ -69,11 +97,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
   }
 
   bool isActive () {
-    if (titleController.text.isNotEmpty &&
-        descriptionController.text.isNotEmpty &&
-        groupValue != null &&
-        selectedDate != null &&
-        selectedTime != null) {
+    if (title != null && description != null && groupValue != null && selectedDate != null && selectedTime != null) {
       return true;
     }
 
