@@ -3,27 +3,26 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text, required this.color, this.onTap});
+  const CustomButton({super.key, required this.text, required this.color, this.onTap, this.isActive = true});
 
   final Function()? onTap;
+  final bool isActive;
   final String text;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isActive ? onTap : null,
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: isActive ? color : color.withAlpha(127),
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
+          boxShadow: isActive ? [BoxShadow(
               color: Color(kButtonColor).withAlpha(180),
               blurRadius: 10,
               offset: const Offset(0, 5),
-            ),
-          ],
+            )] : null,
         ),
         width: double.infinity,
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

@@ -20,6 +20,14 @@ const String kArrowBackIcon = 'assets/images/Arrow - Back - Icon.svg';
 
 const String kAddTaskIcon = 'assets/images/Paper Plus - Iconly Pro.svg';
 
+const String kPersonalIcon = 'assets/images/Personal_Icon.svg';
+
+const String kHomeIcon = 'assets/images/Home_Icon.svg';
+
+const String kWorkIcon = 'assets/images/Work_Icon.svg';
+
+const String kCalendarIcon = 'assets/images/calendar.svg';
+
 const int kPrimaryColor = 0xFFF3F5F4;
 
 const int kButtonColor = 0xFF149954;

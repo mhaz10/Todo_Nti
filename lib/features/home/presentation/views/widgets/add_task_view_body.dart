@@ -2,10 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_nti/core/constants/constants.dart';
 import 'package:todo_app_nti/core/widgets/custom_button.dart';
 
+import 'custom_drop_down.dart';
 import 'custom_task_field.dart';
+import 'data_time_card.dart';
 
-class AddTaskViewBody extends StatelessWidget {
+class AddTaskViewBody extends StatefulWidget {
   const AddTaskViewBody({super.key});
+
+  @override
+  State<AddTaskViewBody> createState() => _AddTaskViewBodyState();
+}
+
+class _AddTaskViewBodyState extends State<AddTaskViewBody> {
+
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  String? groupValue;
+  String? selectedDate;
+  String? selectedTime;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +41,43 @@ class AddTaskViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30,),
-            CustomTaskField(hintText: 'Title',),
+            CustomTaskField(hintText: 'Title',maxLines: 1),
             const SizedBox(height: 20,),
             CustomTaskField(hintText: 'Description'),
             const SizedBox(height: 20,),
-            CustomButton(text: 'Add Task', color: Color(0xFF149954))
+            CustomDropdown(
+              onChanged: (value) {
+              groupValue = value;
+            },),
+            const SizedBox(height: 20,),
+            DateTimeCard(
+              onDateTimeSelected: (date, time) {
+                selectedDate = date;
+                selectedTime = time;
+              },
+            ),
+            const SizedBox(height: 20,),
+            CustomButton(
+              text: 'Add Task',
+              color: Color(0xFF149954),
+              isActive: isActive(),
+            )
           ],
         ),
       ),
     );
   }
+
+  bool isActive () {
+    if (titleController.text.isNotEmpty &&
+        descriptionController.text.isNotEmpty &&
+        groupValue != null &&
+        selectedDate != null &&
+        selectedTime != null) {
+      return true;
+    }
+
+    return false;
+  }
 }
+

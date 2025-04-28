@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
 class CustomTaskField extends StatelessWidget {
-  const CustomTaskField({super.key, required this.hintText});
+  const CustomTaskField({super.key, required this.hintText, this.maxLines, this.controller});
 
+  final TextEditingController? controller;
   final String hintText;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "This field is required";
-          }
-          return null;
-        },
+      child: TextField(
+        controller: controller,
+        keyboardType: TextInputType.multiline,
+        maxLines: maxLines,
         cursorColor: Color(0xFFCDCDCD),
         decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
           hintText: hintText,
           hintStyle: const TextStyle(
             color: Color(0xFF939393),
-            fontSize: 16,
+            fontSize: 14,
           ),
           contentPadding: const EdgeInsets.all(20),
           border: OutlineInputBorder(
