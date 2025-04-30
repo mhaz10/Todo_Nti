@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomTaskField extends StatelessWidget {
-  const CustomTaskField({super.key, required this.hintText, this.maxLines, this.onChanged});
+  const CustomTaskField({super.key, required this.hintText, this.maxLines, this.onSubmitted});
 
-  final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
   final String hintText;
   final int? maxLines;
 
@@ -12,7 +12,7 @@ class CustomTaskField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
-        onChanged: onChanged,
+        onSubmitted: onSubmitted,
         keyboardType: TextInputType.multiline,
         maxLines: maxLines,
         cursorColor: Color(0xFFCDCDCD),

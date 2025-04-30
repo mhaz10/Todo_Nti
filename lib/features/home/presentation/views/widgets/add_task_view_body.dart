@@ -44,7 +44,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
             CustomTaskField(
               hintText: 'Title',
               maxLines: 1,
-              onChanged: (value) {
+              onSubmitted: (value) {
                 setState(() {
                   title = value;
                 });
@@ -53,7 +53,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
             const SizedBox(height: 20,),
             CustomTaskField(
               hintText: 'Description',
-              onChanged: (value) {
+              onSubmitted: (value) {
                 setState(() {
                   description = value;
                 });
