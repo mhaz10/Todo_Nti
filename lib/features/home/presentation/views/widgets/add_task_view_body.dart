@@ -15,8 +15,8 @@ class AddTaskViewBody extends StatefulWidget {
 
 class _AddTaskViewBodyState extends State<AddTaskViewBody> {
 
-  String? title;
-  String? description;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   String? groupValue;
   String? selectedDate;
   String? selectedTime;
@@ -44,20 +44,12 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
             CustomTaskField(
               hintText: 'Title',
               maxLines: 1,
-              onSubmitted: (value) {
-                setState(() {
-                  title = value;
-                });
-              },
+              controller: titleController,
             ),
             const SizedBox(height: 20,),
             CustomTaskField(
               hintText: 'Description',
-              onSubmitted: (value) {
-                setState(() {
-                  description = value;
-                });
-              },
+              controller: descriptionController,
             ),
             const SizedBox(height: 20,),
             CustomDropdown(
@@ -82,11 +74,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
               isActive: isActive(),
               onTap: () {
                 if(isActive()) {
-                  print('Title: $title');
-                  print('Description: $description');
-                  print('Group: $groupValue');
-                  print('Date: $selectedDate');
-                  print('Time: $selectedTime');
+                  // handle the task addition logic here
                 }
               },
             )
@@ -97,7 +85,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
   }
 
   bool isActive () {
-    if (title != null && description != null && groupValue != null && selectedDate != null && selectedTime != null) {
+    if (titleController.text.isNotEmpty && descriptionController.text.isNotEmpty && groupValue != null && selectedDate != null && selectedTime != null) {
       return true;
     }
 
