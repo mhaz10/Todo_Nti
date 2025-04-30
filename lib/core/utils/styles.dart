@@ -6,6 +6,12 @@ class Styles {
     fontWeight: FontWeight.w600,
   );
 
+  static const textStyle12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: Colors.white
+  );
+
   static const textStyle14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
@@ -25,5 +31,11 @@ class Styles {
       fontSize: 24,
       fontWeight: FontWeight.w400,
       color: Colors.black,
+  );
+
+  static const textStyle40 = TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.w500,
+      color: Colors.white,
   );
 }
