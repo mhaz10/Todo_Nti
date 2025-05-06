@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:todo_app_nti/features/home/presentation/views/tasks_view.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/change_password.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/settings.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/update_profile.dart';
@@ -20,6 +21,7 @@ abstract class AppRouter {
   static const kUpdateProfile = '/UpdateProfile';
   static const kChangePassword = '/ChangePassword';
   static const kSettings = '/Settings';
+  static const kTasksView = '/TasksView';
 
   static final router = GoRouter(
     routes: [
@@ -73,6 +75,10 @@ abstract class AppRouter {
         builder: (context, state) => const Settings(),
       ),
 
+      GoRoute(
+        path: kTasksView,
+        builder: (context, state) => const TasksView(),
+      ),
     ],
   );
 }

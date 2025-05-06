@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:todo_app_nti/core/utils/app_router.dart';
 import 'package:todo_app_nti/core/utils/styles.dart';
-import 'package:todo_app_nti/features/home/presentation/views/widgets/custom_in_progress_task.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/task_counter.dart';
-import 'package:todo_app_nti/features/home/presentation/views/widgets/tasks_builder_failure.dart';
-import 'package:todo_app_nti/features/home/presentation/views/widgets/tasks_builder_success.dart';
+import 'package:todo_app_nti/features/home/presentation/views/widgets/task_groups.dart';
 
 import '../../../../../core/constants/constants.dart';
 import 'custom_list_view_in_progress_tasks.dart';
+import 'custom_task_groups.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -17,6 +17,7 @@ class HomeViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30, left: 16, right: 16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: MediaQuery.of(context).size.width *  0.8933,
@@ -42,15 +43,20 @@ class HomeViewBody extends StatelessWidget {
                       color: Colors.white
                     )),
                     const Spacer(),
-                    Container(
-                      width: 121,
-                      height: 36,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        GoRouter.of(context).push(AppRouter.kTasksView);
+                      },
+                      child: Container(
+                        width: 121,
+                        height: 36,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.white,
+                        ),
+                        child: Center(child: Text('View Tasks', style: Styles.textStyle14.copyWith(color: Color(kButtonColor)),)),
                       ),
-                      child: Center(child: Text('View Tasks', style: Styles.textStyle14.copyWith(color: Color(kButtonColor)),)),
                     )
                   ],
                 )
@@ -60,10 +66,16 @@ class HomeViewBody extends StatelessWidget {
           const SizedBox(height: 30,),
           TaskCounter(taskTitle: 'In Progress', taskCount: 3,),
           const SizedBox(height: 20,),
-          CustomListViewInProgressTasks()
+          CustomListViewInProgressTasks(),
+          const SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text('Task Groups'),
+          ),
+          const SizedBox(height: 20,),
+          TaskGroups()
         ],
       ),
     );
   }
 }
-

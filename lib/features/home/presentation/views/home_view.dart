@@ -12,9 +12,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
+          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height *0.0862),
           child: Padding(
-            padding: const EdgeInsets.only(top: 30, left: 16, right: 16),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.0492, left: 16, right: 16),
             child: Row(
               children: [
                 GestureDetector(
