@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-
+import 'package:todo_app_nti/core/helper/app_navigator.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/widgets/change_password.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/custom_profile_button.dart';
-
-import '../../../../../core/utils/app_router.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/widgets/settings.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/widgets/update_profile.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -17,16 +17,16 @@ class ProfileViewBody extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            CustomProfileButton(icon: kProfileIcon, text: 'Profile', onTap: () {
-              GoRouter.of(context).push(AppRouter.kUpdateProfile);
+            CustomProfileButton(icon: AppIcons.profileIcon, text: 'Profile', onTap: () {
+              AppNavigator.goTo(screen: UpdateProfile());
             },),
             SizedBox(height: 16,),
-            CustomProfileButton(icon: kLockIcon, text: 'Change Password', onTap: () {
-              GoRouter.of(context).push(AppRouter.kChangePassword);
+            CustomProfileButton(icon: AppIcons.lockIcon, text: 'Change Password', onTap: () {
+              AppNavigator.goTo(screen: ChangePassword());
             },),
             SizedBox(height: 16,),
-            CustomProfileButton(icon: kSettingIcon, text: 'Settings', onTap: () {
-              GoRouter.of(context).push(AppRouter.kSettings);
+            CustomProfileButton(icon: AppIcons.settingIcon, text: 'Settings', onTap: () {
+              AppNavigator.goTo(screen: Settings());
             },),
           ],
         ),

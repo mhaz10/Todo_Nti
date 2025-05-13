@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-import 'package:todo_app_nti/core/utils/app_router.dart';
+import 'package:todo_app_nti/core/utils/app_colors.dart';
+import 'core/cache/ cache_helper.dart';
+import 'core/cache/cache_data.dart';
+import 'core/translation/translation_helper.dart';
+import 'features/splash/presentation/views/splash_view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+  await TranslationHelper.setLanguage();
   runApp(const MyApp());
 }
 
@@ -13,16 +20,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return GetMaterialApp(
+      locale: Locale(CacheData.lang!),
+      translations: TranslationHelper(),
       debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.router,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.dark,
         ),
-        scaffoldBackgroundColor: Color(kPrimaryColor),
+        scaffoldBackgroundColor: AppColors.scaffoldBackground,
         fontFamily: GoogleFonts.lexendDeca().fontFamily
       ),
+      home: SplashView(),
     );
   }
 }

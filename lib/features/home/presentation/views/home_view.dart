@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-import 'package:todo_app_nti/core/utils/app_router.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/helper/app_navigator.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
+import 'package:todo_app_nti/core/utils/app_assets.dart';
+import 'package:todo_app_nti/core/utils/app_colors.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
+import 'package:todo_app_nti/features/home/presentation/views/add_task_view.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:todo_app_nti/features/profile/presentation/views/profile_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,48 +18,50 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height *0.0862),
-          child: Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.0492, left: 16, right: 16),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(AppRouter.kProfileView);
-                  },
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(kLoginImage),
+        preferredSize: Size.fromHeight(
+          AppResponsive.height(context, value: 70),
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: AppResponsive.height(context, value: 40),
+            left: 16,
+            right: 16,
+          ),
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  AppNavigator.goTo(screen: ProfileView());
+                },
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundImage: AssetImage(AppAssets.user),
+                ),
+              ),
+              SizedBox(width: 14),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    TranslationKeys.hello.tr,
+                    style: TextStyle(fontSize: 16),
                   ),
-                ),
-                SizedBox(width: 14,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hello!',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    Text(
-                      'User Name',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          )),
+                  Text(
+                    'User Name',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(kButtonColor),
+        backgroundColor: AppColors.primary,
         onPressed: () {
-          GoRouter.of(context).push(AppRouter.kAddTaskView);
+          AppNavigator.goTo(screen: AddTaskView());
         },
-        child: SvgPicture.asset(kAddTaskIcon,),
+        child: SvgPicture.asset(AppIcons.addTaskIcon),
       ),
       body: HomeViewBody(),
     );

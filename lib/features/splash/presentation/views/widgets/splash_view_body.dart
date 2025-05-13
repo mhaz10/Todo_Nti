@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-import 'package:todo_app_nti/core/utils/app_router.dart';
+import 'package:todo_app_nti/core/helper/app_navigator.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import 'package:todo_app_nti/core/utils/app_assets.dart';
+import 'package:todo_app_nti/features/auth/presentation/views/login_view.dart';
+import 'package:todo_app_nti/features/onboarding/presentation/views/onboarding_view.dart';
+import '../../../../../core/cache/ cache_helper.dart';
+import '../../../../../core/cache/cache_data.dart';
+import '../../../../../core/cache/cache_keys.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -11,7 +16,6 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
-
   @override
   void initState() {
     super.initState();
@@ -20,18 +24,25 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void navigateToNextScreen() {
     Future.delayed(const Duration(seconds: 3), () {
-      GoRouter.of(context).pushReplacement(AppRouter.kOnBoardingView);
+      CacheData.firstTime = CacheHelper.getData(key: CacheKeys.firstTime);
+
+      if (CacheData.firstTime != null) {
+        // goto login
+        AppNavigator.goTo(screen: () => LoginView(), isReplace: true);
+      } else // first time
+      {
+        AppNavigator.goTo(screen: () => OnboardingView(), isReplace: true);
+      }
     });
-}
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Image.asset(
-        kSplashLogo,
-        width: MediaQuery.of(context).size.width * 0.8906,
-        height: MediaQuery.of(context).size.height * 0.5332,
+        AppAssets.logo,
+        width: AppResponsive.width(context, value: 334),
+        height: AppResponsive.height(context, value: 433),
       ),
     );
   }

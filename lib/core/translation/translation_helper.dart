@@ -1,0 +1,53 @@
+import 'dart:ui';
+
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
+import '../cache/ cache_helper.dart';
+import '../cache/cache_data.dart';
+import '../cache/cache_keys.dart';
+import 'ar.dart';
+import 'en.dart';
+
+class TranslationHelper implements Translations {
+  @override
+  Map<String, Map<String, String>> get keys => {
+    CacheKeys.keyAR: ar,
+    CacheKeys.keyEN: en,
+  };
+
+  static Future setLanguage() async
+  {
+    CacheData.lang = await CacheHelper.getData(key: CacheKeys.langKey);
+
+    if (CacheData.lang == null)
+    {
+      Get.deviceLocale == const Locale('ar')
+          ? await CacheHelper.saveData(
+              key: CacheKeys.langKey, value: CacheKeys.keyAR)
+          : await CacheHelper.saveData(
+              key: CacheKeys.langKey, value: CacheKeys.keyEN);
+
+      await Get.updateLocale( Get.deviceLocale == const Locale('ar') ? TranslationKeys.localeAR : TranslationKeys.localeEN);
+      CacheData.lang = Get.deviceLocale == const Locale('ar') ? CacheKeys.keyAR : CacheKeys.keyEN;
+    }
+  }
+
+  static changeLanguage(bool isAr)async
+  {
+    if(isAr)
+    {
+      await CacheHelper.saveData(
+          key: CacheKeys.langKey, value: CacheKeys.keyAR);
+      await Get.updateLocale(TranslationKeys.localeAR);
+      CacheData.lang = CacheKeys.keyAR;
+    }
+    else
+    {
+      await CacheHelper.saveData(
+          key: CacheKeys.langKey, value: CacheKeys.keyEN);
+      await Get.updateLocale(TranslationKeys.localeEN);
+      CacheData.lang = CacheKeys.keyEN;
+    }
+
+  }
+}

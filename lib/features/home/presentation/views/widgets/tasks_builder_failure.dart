@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
+import 'package:todo_app_nti/core/utils/app_assets.dart';
 
-import '../../../../../core/constants/constants.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class TasksBuilderFailure extends StatelessWidget {
   const TasksBuilderFailure({super.key});
@@ -15,9 +15,9 @@ class TasksBuilderFailure extends StatelessWidget {
         const Text(
           'There are no tasks yet, \n Press the button \n To add New Task ',
           textAlign: TextAlign.center,
-          style: Styles.textStyle16,),
+          style: TextStyles.textStyle16,),
         const SizedBox(height: 30,),
-        Image.asset(kEmptyTasksImage)
+        Image.asset(AppAssets.emptyTasks)
       ],
     );
   }

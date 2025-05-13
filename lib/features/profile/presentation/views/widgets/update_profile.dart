@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/widgets/custom_text_form_field.dart';
-
-import '../../../../../core/constants/constants.dart';
+import 'package:todo_app_nti/core/widgets/image_picker/image_manager_view.dart';
 
 class UpdateProfile extends StatelessWidget {
   const UpdateProfile({super.key});
@@ -9,15 +10,15 @@ class UpdateProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(300), child: Image.asset(
-        kLoginImage,
-        fit: BoxFit.fill,
-      )),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(300),
+        child: ImageManagerView(onPicked: (image) {}),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 30.0),
-        child: const Column(
+        child: Column(
           children: [
-            CustomTextFormField(hintText: 'User Name'),
+            CustomTextFormField(hintText: TranslationKeys.userName.tr),
           ],
         ),
       ),

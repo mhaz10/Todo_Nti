@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../../../../core/utils/app_router.dart';
-import '../../../../../core/utils/styles.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/helper/app_navigator.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
+import 'package:todo_app_nti/core/utils/app_colors.dart';
+import 'package:todo_app_nti/features/home/presentation/views/home_view.dart';
+import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 
@@ -25,37 +27,49 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomTextFormField(hintText: 'User Name'),
-              const SizedBox(height: 20,),
-              CustomTextFormField(hintText: 'Password', isPassword: true,),
-              const SizedBox(height: 20,),
-              CustomTextFormField(hintText: 'Confirm Password', isPassword: true,),
-              const SizedBox(height: 16,),
+              CustomTextFormField(hintText: TranslationKeys.userName.tr),
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                hintText: TranslationKeys.userPassword.tr,
+                isPassword: true,
+              ),
+              const SizedBox(height: 20),
+              CustomTextFormField(
+                hintText: TranslationKeys.userConfirmPassword.tr,
+                isPassword: true,
+              ),
+              const SizedBox(height: 16),
               CustomButton(
-                text: 'Register',
-                color: Color(0xFF149954),
+                text: TranslationKeys.register.tr,
+                color: AppColors.primary,
                 onTap: () {
                   if (formKey.currentState!.validate()) {
-                    GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+                    AppNavigator.goTo(screen: HomeView());
                   }
-                },),
-              const SizedBox(height: 14,),
+                },
+              ),
+              const SizedBox(height: 14),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Already Have An Account?', style: Styles.textStyle14.copyWith(
-                      color: const Color(0xFF6E6A7C)
-                  ),),
+                  Text(
+                    TranslationKeys.alreadyHaveAnAccount.tr,
+                    style: TextStyles.textStyle14.copyWith(
+                      color: AppColors.grey,
+                    ),
+                  ),
                   const SizedBox(width: 8),
                   TextButton(
                     onPressed: () {
-                      GoRouter.of(context).pop();
+                      Navigator.pop(context);
                     },
-                    child: const Text('Login', style: TextStyle(
-                        color: Colors.black
-                    ),),
-                  )
-                ],)
+                    child: Text(
+                      TranslationKeys.login.tr,
+                      style: TextStyle(color: AppColors.black),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

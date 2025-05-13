@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
-
-import '../../../../../core/utils/app_router.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/utils/app_assets.dart';
+import 'package:todo_app_nti/core/utils/app_colors.dart';
+import 'package:todo_app_nti/features/auth/presentation/views/login_view.dart';
+import '../../../../../core/helper/app_navigator.dart';
+import '../../../../../core/translation/translation_keys.dart';
+import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
+
 
 class OnboardingViewBody extends StatelessWidget {
   const OnboardingViewBody({super.key});
@@ -15,29 +18,30 @@ class OnboardingViewBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(kOnBoardingLogo, width: 300, height: 330,),
+        Image.asset(AppAssets.getStart, width: 300, height: 330,),
         const SizedBox(height: 20),
-        const Center(
+        Center(
           child: Text(
-            'Welcome To \n Do It !',
+            TranslationKeys.welcomeToDoIt.tr,
             textAlign: TextAlign.center,
-            style: Styles.textStyle24,
+            style: TextStyles.textStyle24,
           ),
         ),
         const SizedBox(height: 20),
         Center(
           child: Text(
-            'Ready to conquer your tasks? Let\'s Do \n It together.',
+            TranslationKeys.readyToConquer.tr,
             textAlign: TextAlign.center,
-            style: Styles.textStyle16.copyWith(
-              color: Color(0xFF6E6A7C)
+            style: TextStyles.textStyle16.copyWith(
+              color: AppColors.grey
             ),
           ),
         ),
         CustomButton(
-          text: 'Let\'s Start', color: Color(kButtonColor),
-          onTap: () {
-            GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+          text: TranslationKeys.letStart.tr, color: AppColors.primary,
+          onTap: () async {
+            //await CacheHelper.saveData(key: CacheKeys.firstTime, value: false);
+            AppNavigator.goTo(screen: ()=> LoginView());
         },)
       ],
     );

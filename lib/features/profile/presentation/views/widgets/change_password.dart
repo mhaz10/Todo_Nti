@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_nti/core/utils/app_assets.dart';
 import 'package:todo_app_nti/core/widgets/custom_button.dart';
 import 'package:todo_app_nti/core/widgets/custom_text_form_field.dart';
-
-import '../../../../../core/constants/constants.dart';
+import '../../../../../core/utils/app_colors.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
@@ -11,7 +11,7 @@ class ChangePassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(preferredSize: Size.fromHeight(300), child: Image.asset(
-        kLoginImage,
+        AppAssets.user,
         fit: BoxFit.fill,
       )),
       body: Padding(
@@ -25,7 +25,7 @@ class ChangePassword extends StatelessWidget {
               SizedBox(height: 10,),
               CustomTextFormField(hintText: 'Confirm Password'),
               SizedBox(height: 20,),
-              CustomButton(text: 'Save', color: Color(kButtonColor))
+              CustomButton(text: 'Save', color: AppColors.primary),
             ],
           ),
         ),

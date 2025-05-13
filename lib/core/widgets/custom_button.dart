@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, required this.color, this.onTap, this.isActive = true});
@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
           color: isActive ? color : color.withAlpha(127),
           borderRadius: BorderRadius.circular(16),
           boxShadow: isActive ? [BoxShadow(
-              color: Color(kButtonColor).withAlpha(180),
+              color: AppColors.primary.withAlpha(180),
               blurRadius: 10,
               offset: const Offset(0, 5),
             )] : null,

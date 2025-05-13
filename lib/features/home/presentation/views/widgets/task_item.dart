@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import 'package:todo_app_nti/core/utils/app_assets.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class TaskItem extends StatelessWidget {
   const TaskItem({super.key});
@@ -13,22 +16,22 @@ class TaskItem extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
       ),
-      width: MediaQuery.of(context).size.width * 0.8906,
-      height: MediaQuery.of(context).size.height * 0.1108,
+      width: AppResponsive.width(context, value: 334),
+      height: AppResponsive.height(context, value: 90),
       padding: const EdgeInsets.all(14),
       child: Row(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.1796,
-            width: MediaQuery.of(context).size.width * 0.1796,
+            height: AppResponsive.height(context, value: 60),
+            width: AppResponsive.width(context, value: 60),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
-                image: AssetImage(kLoginImage),
+                image: AssetImage(AppAssets.user),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha(64),
+                  color: AppColors.black.withAlpha(64),
                   spreadRadius: 0,
                   blurRadius: 4,
                   offset: const Offset(0, 4),
@@ -41,7 +44,7 @@ class TaskItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Go to supermarket to buy some milk & eggs', style: Styles.textStyle14),
+                Text('Go to supermarket to buy some milk & eggs', style: TextStyles.textStyle14),
                 const SizedBox(height: 4,),
                 Expanded(
                   child: Row(
@@ -53,9 +56,9 @@ class TaskItem extends StatelessWidget {
                           color: Color(0xFFCEEBDC),
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: Text('In Progress', style: Styles.textStyle12),
+                        child: Text('In Progress', style: TextStyles.textStyle12),
                       ),
-                      SvgPicture.asset(kHomeIcon, width: 5, height: 5,)
+                      SvgPicture.asset(AppIcons.homeIcon, width: 5, height: 5,)
                     ],
                   ),
                 )

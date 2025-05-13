@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/core/utils/app_router.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
+import 'package:todo_app_nti/core/helper/app_navigator.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import 'package:todo_app_nti/features/home/presentation/views/tasks_view.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/task_counter.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/task_groups.dart';
-
-import '../../../../../core/constants/constants.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/text_styles.dart';
 import 'custom_list_view_in_progress_tasks.dart';
-import 'custom_task_groups.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -20,32 +19,32 @@ class HomeViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width *  0.8933,
-            height: MediaQuery.of(context).size.height * 0.1847,
+            width: AppResponsive.width(context, value: 334),
+            height: AppResponsive.height(context, value: 150),
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Color(kButtonColor),
+              color: AppColors.primary,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Your today’s tasks \n almost done!',
-                  style: Styles.textStyle14.copyWith(
+                  style: TextStyles.textStyle14.copyWith(
                   color: Colors.white,
                 ),),
                 const SizedBox(height: 4,),
                 Row(
                   children: [
-                    Text('80', style: Styles.textStyle40,),
-                    Text('%', style: Styles.textStyle24.copyWith(
+                    Text('80', style: TextStyles.textStyle40,),
+                    Text('%', style: TextStyles.textStyle24.copyWith(
                       color: Colors.white
                     )),
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).push(AppRouter.kTasksView);
+                        AppNavigator.goTo(screen: TasksView());
                       },
                       child: Container(
                         width: 121,
@@ -55,7 +54,7 @@ class HomeViewBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16),
                           color: Colors.white,
                         ),
-                        child: Center(child: Text('View Tasks', style: Styles.textStyle14.copyWith(color: Color(kButtonColor)),)),
+                        child: Center(child: Text('View Tasks', style: TextStyles.textStyle14.copyWith(color: AppColors.primary),)),
                       ),
                     )
                   ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/constants/constants.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
 import 'custom_task_groups.dart';
 
 class TaskGroups extends StatelessWidget {
@@ -10,11 +9,11 @@ class TaskGroups extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomTaskGroups(taskTitle: 'Personal Task', taskCount: 3, taskIcon: kPersonalIcon),
+        CustomTaskGroups(taskTitle: 'Personal Task', taskCount: 3, taskIcon: AppIcons.personalIcon),
         const SizedBox(height: 20,),
-        CustomTaskGroups(taskTitle: 'Home Task', taskCount: 5, taskIcon: kHomeIcon),
+        CustomTaskGroups(taskTitle: 'Home Task', taskCount: 5, taskIcon: AppIcons.homeIcon),
         const SizedBox(height: 20,),
-        CustomTaskGroups(taskTitle: 'Work Task', taskCount: 7, taskIcon: kWorkIcon),
+        CustomTaskGroups(taskTitle: 'Work Task', taskCount: 7, taskIcon: AppIcons.workIcon),
       ],
     );
   }

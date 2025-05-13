@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
-
-import '../../../../../core/constants/constants.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
+import '../../../../../core/utils/text_styles.dart';
 import 'language_toggle.dart';
 
 class Settings extends StatelessWidget {
@@ -16,9 +15,12 @@ class Settings extends StatelessWidget {
         title: const Text('Settings'),
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        leading: IconButton(onPressed: () {
-          GoRouter.of(context).pop();
-        }, icon: SvgPicture.asset(kArrowBackIcon)),
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          icon: SvgPicture.asset(AppIcons.arrowLeftIcon),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 30),
@@ -28,12 +30,12 @@ class Settings extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 children: [
-                  Text('Language', style: Styles.textStyle20,),
+                  Text('Language', style: TextStyles.textStyle20),
                   Spacer(),
-                  LanguageToggle()
+                  LanguageToggle(),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

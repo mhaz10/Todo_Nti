@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_app_nti/core/constants/constants.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
+
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class CustomDropdown extends StatefulWidget {
   const CustomDropdown({super.key, this.onChanged});
@@ -16,18 +19,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
   String? selectedValue;
 
   final List<Map<String, dynamic>> items = [
-    {
-      'label': 'Home',
-      'icon': kHomeIcon,
-    },
-    {
-      'label': 'Personal',
-      'icon': kPersonalIcon,
-    },
-    {
-      'label': 'Work',
-      'icon': kWorkIcon,
-    },
+    {'label': 'Home', 'icon': AppIcons.homeIcon},
+    {'label': 'Personal', 'icon': AppIcons.personalIcon},
+    {'label': 'Work', 'icon': AppIcons.workIcon},
   ];
 
   @override
@@ -35,18 +29,19 @@ class _CustomDropdownState extends State<CustomDropdown> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.9066,
+        width: AppResponsive.width(context, value: 340),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade300, width: 2),
-          color: Colors.white,
+          border: Border.all(color: AppColors.grey, width: 2),
+          color: AppColors.white,
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
-            hint: Text('Group', style: Styles.textStyle14.copyWith(
-              color: Color(0xFF939393),
-            ),),
+            hint: Text(
+              'Group',
+              style: TextStyles.textStyle14.copyWith(color: AppColors.grey),
+            ),
             value: selectedValue,
             isExpanded: true,
             icon: Icon(Icons.keyboard_arrow_down),
@@ -56,27 +51,25 @@ class _CustomDropdownState extends State<CustomDropdown> {
               });
               widget.onChanged?.call(value);
             },
-            items: items.map((item) {
-              return DropdownMenuItem<String>(
-                value: item['label'],
-                child: Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: SvgPicture.asset(item['icon'])
+            items:
+                items.map((item) {
+                  return DropdownMenuItem<String>(
+                    value: item['label'],
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: SvgPicture.asset(item['icon']),
+                        ),
+                        SizedBox(width: 10),
+                        Text(item['label'], style: TextStyles.textStyle14),
+                      ],
                     ),
-                    SizedBox(width: 10),
-                    Text(
-                      item['label'],
-                      style: Styles.textStyle14
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
+                  );
+                }).toList(),
           ),
         ),
       ),

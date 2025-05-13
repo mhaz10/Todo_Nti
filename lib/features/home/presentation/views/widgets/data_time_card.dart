@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_app_nti/core/utils/styles.dart';
+import 'package:todo_app_nti/core/utils/app_icons.dart';
 
-import '../../../../../core/constants/constants.dart';
+import '../../../../../core/utils/text_styles.dart';
 
 class DateTimeCard extends StatefulWidget {
   const DateTimeCard({super.key, this.onDateTimeSelected});
@@ -55,11 +55,11 @@ class _DateTimeCardState extends State<DateTimeCard> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(kCalendarIcon),
+            SvgPicture.asset(AppIcons.calendarIcon),
             SizedBox(width: 8.0),
             Text(
               formattedDate != null && formattedTime != null ? '$formattedDate   $formattedTime' : 'End Time',
-              style: Styles.textStyle14.copyWith(
+              style: TextStyles.textStyle14.copyWith(
                 color: formattedDate != null && formattedTime != null ? Colors.black : Color(0xFFB7B7B7),
               ),
             ),
