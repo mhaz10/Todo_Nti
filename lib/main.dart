@@ -12,6 +12,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   await TranslationHelper.setLanguage();
+  print('\x1B[31mThis is red text\x1B[0m');
+  print('\x1B[32mThis is green text\x1B[0m');
   runApp(const MyApp());
 }
 

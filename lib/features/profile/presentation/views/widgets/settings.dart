@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
 import '../../../../../core/utils/text_styles.dart';
 import 'language_toggle.dart';
@@ -17,7 +16,7 @@ class Settings extends StatelessWidget {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
-            GoRouter.of(context).pop();
+            Navigator.pop(context);
           },
           icon: SvgPicture.asset(AppIcons.arrowLeftIcon),
         ),
