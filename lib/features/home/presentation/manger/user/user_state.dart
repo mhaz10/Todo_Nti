@@ -16,3 +16,15 @@ final class UserFailureState extends UserState {
   final String error;
   UserFailureState({required this.error});
 }
+
+final class AddNewTaskSuccessState extends UserState {
+  final String message;
+
+  AddNewTaskSuccessState({required this.message});
+}
+
+final class AddNewTaskFailureState extends UserState {
+  final String error;
+
+  AddNewTaskFailureState({required this.error});
+}

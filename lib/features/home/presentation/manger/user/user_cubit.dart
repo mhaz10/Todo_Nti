@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../auth/data/models/login_model.dart';
@@ -30,6 +31,23 @@ class UserCubit extends Cubit<UserState> {
       (userModel) {
         emit(UserSuccessState(userModel: userModel));
         return true;
+      },
+    );
+  }
+
+  Future<void> addNewTask({
+    required String title,
+    required String description,
+    image,
+  }) async {
+    var response = await repo.addNewTask(title: title, description: description, image: image);
+
+    return response.fold(
+          (error) {
+        emit(AddNewTaskFailureState(error: error));
+      },
+          (message) {
+        emit(AddNewTaskSuccessState(message: message));
       },
     );
   }
