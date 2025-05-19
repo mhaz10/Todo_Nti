@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_colors.dart';
@@ -9,7 +8,6 @@ import 'package:todo_app_nti/core/utils/app_toast.dart';
 import 'package:todo_app_nti/core/widgets/custom_button.dart';
 import 'package:todo_app_nti/core/widgets/image_picker/image_manager_view.dart';
 import 'package:todo_app_nti/features/home/presentation/manger/user/user_cubit.dart';
-import '../../../../../core/utils/app_assets.dart';
 import 'custom_drop_down.dart';
 import 'custom_task_field.dart';
 import 'data_time_card.dart';
