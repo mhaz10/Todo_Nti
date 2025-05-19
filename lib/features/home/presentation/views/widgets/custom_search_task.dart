@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import '../../../../../core/translation/translation_keys.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_icons.dart';
 
@@ -21,12 +23,12 @@ class CustomSearchTask extends StatelessWidget {
           onChanged: (value) {
           },
           decoration: InputDecoration(
-            hintText: 'Search...',
+            hintText: TranslationKeys.search.tr,
             hintStyle: TextStyle(
               color: AppColors.grey,
               fontSize: 14,
             ),
-            suffixIcon: SvgPicture.asset(AppIcons.settingIcon, width: 4, height: 4, fit: BoxFit.none,),
+            suffixIcon: SvgPicture.asset(AppIcons.searchTaskIcon, width: 4, height: 4, fit: BoxFit.none,),
             border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           ),

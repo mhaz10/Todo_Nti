@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/custom_search_task.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/task_counter.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/tasks_list_view.dart';
@@ -15,7 +17,7 @@ class TasksViewBody extends StatelessWidget {
           children: [
             CustomSearchTask(),
             const SizedBox(height: 30,),
-            TaskCounter(taskTitle: 'Result', taskCount: 5,),
+            TaskCounter(taskTitle: TranslationKeys.results.tr, taskCount: 5,),
             const SizedBox(height: 30,),
             TasksListView()
           ],

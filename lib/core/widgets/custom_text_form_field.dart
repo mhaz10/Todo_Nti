@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({super.key, required this.hintText, this.isPassword = false});
+  const CustomTextFormField({super.key, required this.hintText, this.isPassword = false, this.controller, this.passwordToMatch});
 
+  final TextEditingController? controller;
+  final TextEditingController? passwordToMatch;
   final String hintText;
   final bool isPassword;
 
@@ -18,6 +20,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
+        controller: widget.controller,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         obscureText: isObscure,
         validator: (value) {
@@ -26,6 +29,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           }
           if (widget.isPassword && value.length < 6) {
             return 'Password must be at least 6 characters';
+          }
+
+          if ( widget.isPassword && widget.passwordToMatch != null && value != widget.passwordToMatch!.text) {
+            return 'Passwords do not match';
           }
           return null;
         },

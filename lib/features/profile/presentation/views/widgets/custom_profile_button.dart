@@ -4,6 +4,8 @@ import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/utils/app_colors.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
 
+import '../../../../../core/cache/cache_data.dart';
+import '../../../../../core/cache/cache_keys.dart';
 import '../../../../../core/utils/text_styles.dart';
 
 class CustomProfileButton extends StatelessWidget {
@@ -38,7 +40,7 @@ class CustomProfileButton extends StatelessWidget {
             const SizedBox(width: 10),
             Text(text, style: TextStyles.textStyle16),
             Spacer(),
-            SvgPicture.asset(AppIcons.arrowRightIcon)
+            SvgPicture.asset(CacheData.lang ==  CacheKeys.keyEN ? AppIcons.arrowRightIcon :  AppIcons.arrowLeftIcon)
           ],
         ),
       ),

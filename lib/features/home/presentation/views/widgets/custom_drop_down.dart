@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
 
+import '../../../../../core/translation/translation_keys.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/text_styles.dart';
 
@@ -19,9 +21,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
   String? selectedValue;
 
   final List<Map<String, dynamic>> items = [
-    {'label': 'Home', 'icon': AppIcons.homeIcon},
-    {'label': 'Personal', 'icon': AppIcons.personalIcon},
-    {'label': 'Work', 'icon': AppIcons.workIcon},
+    {'label': TranslationKeys.homeTask.tr, 'icon': AppIcons.homeIcon},
+    {'label': TranslationKeys.personalTask.tr, 'icon': AppIcons.personalIcon},
+    {'label': TranslationKeys.workTask.tr , 'icon': AppIcons.workIcon},
   ];
 
   @override
@@ -39,7 +41,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
             hint: Text(
-              'Group',
+              TranslationKeys.group.tr,
               style: TextStyles.textStyle14.copyWith(color: AppColors.grey),
             ),
             value: selectedValue,

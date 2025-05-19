@@ -21,14 +21,21 @@ class TranslationHelper implements Translations {
 
     if (CacheData.lang == null)
     {
-      Get.deviceLocale == const Locale('ar')
-          ? await CacheHelper.saveData(
-              key: CacheKeys.langKey, value: CacheKeys.keyAR)
-          : await CacheHelper.saveData(
+      switch (Get.deviceLocale?.languageCode) {
+        case CacheKeys.keyAR:
+          await CacheHelper.saveData(
+              key: CacheKeys.langKey, value: CacheKeys.keyAR);
+          await Get.updateLocale(TranslationKeys.localeAR);
+          CacheData.lang = CacheKeys.keyAR;
+          break;
+        case CacheKeys.keyEN:
+          await CacheHelper.saveData(
               key: CacheKeys.langKey, value: CacheKeys.keyEN);
+          await Get.updateLocale(TranslationKeys.localeEN);
+          CacheData.lang = CacheKeys.keyEN;
+          break;
 
-      await Get.updateLocale( Get.deviceLocale == const Locale('ar') ? TranslationKeys.localeAR : TranslationKeys.localeEN);
-      CacheData.lang = Get.deviceLocale == const Locale('ar') ? CacheKeys.keyAR : CacheKeys.keyEN;
+      }
     }
   }
 

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/utils/app_assets.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/profile_view_body.dart';
+
+import '../../../home/presentation/manger/user/user_cubit.dart';
+import '../../../home/presentation/views/widgets/user_info.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -10,7 +15,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(
-          MediaQuery.of(context).size.height * 0.0862,
+          AppResponsive.height(context, value: 80),
         ),
         child: Padding(
           padding: EdgeInsets.only(
@@ -18,24 +23,20 @@ class ProfileView extends StatelessWidget {
             left: 16,
             right: 16,
           ),
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage(AppAssets.user),
-              ),
-              SizedBox(width: 14),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Hello!', style: TextStyle(fontSize: 16)),
-                  Text(
-                    'User Name',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ],
+          child: BlocBuilder<UserCubit, UserState>(
+            builder: (context, state) {
+              if (state is UserLoadingState) {
+                return UserInfo();
+              } else if (state is UserSuccessState) {
+                return UserInfo(
+                  isLoading: false,
+                  userName: state.userModel.username,
+                  userImage: state.userModel.imagePath,
+                );
+              }
+
+              return UserInfo();
+            },
           ),
         ),
       ),

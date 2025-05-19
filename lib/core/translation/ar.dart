@@ -1,9 +1,9 @@
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
 
-Map<String, String> ar =
-{
+Map<String, String> ar = {
   TranslationKeys.welcomeToDoIt: 'مرحبًا بك في\n تطبيق المهام',
-  TranslationKeys.readyToConquer: 'هل أنت مستعد لإنجاز مهامك؟ \n لنُنجزها معًا.',
+  TranslationKeys.readyToConquer:
+      'هل أنت مستعد لإنجاز مهامك؟ \n لنُنجزها معًا.',
   TranslationKeys.letStart: 'لنبدأ',
   TranslationKeys.login: 'تسجيل الدخول',
   TranslationKeys.userName: 'اسم المستخدم',
@@ -13,9 +13,31 @@ Map<String, String> ar =
   TranslationKeys.doNotHaveAnAccount: 'ليس لديك حساب؟',
   TranslationKeys.register: 'انشاء حساب',
   TranslationKeys.hello: 'مرحباً',
+  TranslationKeys.thereAreNoTasksYet:
+      'لا توجد مهام حتى الآن، \n اضغط على الزر \n لإضافة مهمة جديدة',
+  TranslationKeys.yourTodayIsTasksAlmostDone: 'مهام اليوم على \n وشك الانتهاء!',
+  TranslationKeys.viewTasks: 'عرض المهام',
+  TranslationKeys.inProgress: ' قيد التنفيذ',
+  TranslationKeys.taskGroups: 'مجموعات المهام',
+  TranslationKeys.workTask: 'مهام العمل',
+  TranslationKeys.personalTask: 'مهام شخصية',
+  TranslationKeys.homeTask: 'مهام منزلية',
   TranslationKeys.addTask: 'اضافة مهمة',
+  TranslationKeys.tasks: 'المهام',
+  TranslationKeys.search: 'بحث...',
+  TranslationKeys.results: 'نتائج',
+  TranslationKeys.done: 'منجز',
+  TranslationKeys.missed: 'فائتة',
   TranslationKeys.title: 'العنوان',
   TranslationKeys.description: 'الوصف',
   TranslationKeys.group: 'المجموعة',
   TranslationKeys.endDate: 'تاريخ الانتهاء',
+  TranslationKeys.profile: 'الملف الشخصي',
+  TranslationKeys.changePassword: 'تغيير كلمة المرور',
+  TranslationKeys.settings: 'الإعدادات',
+  TranslationKeys.update: 'تحديث',
+  TranslationKeys.oldPassword: 'كلمة المرور القديمة',
+  TranslationKeys.newPassword: 'كلمة المرور الجديدة',
+  TranslationKeys.confirmPassword: 'تأكيد كلمة المرور',
+  TranslationKeys.save: 'حفظ',
 };

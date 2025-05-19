@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
 import 'package:todo_app_nti/features/home/data/models/in_progress_task_model.dart';
 
+import '../../../../../core/translation/translation_keys.dart';
 import 'custom_in_progress_task.dart';
 
 class CustomListViewInProgressTasks extends StatefulWidget {
@@ -17,7 +19,7 @@ class _CustomListViewInProgressTasksState
     extends State<CustomListViewInProgressTasks> {
   final List<InProgressTaskModel> inProgressTasks = [
     InProgressTaskModel(
-      taskTitle: 'Work Task',
+      taskTitle: TranslationKeys.workTask.tr,
       taskDescription: 'Add New Features',
       taskColor: 0xFF1D1C1B,
       taskTitleColor: 0xFFFFFFFF,
@@ -25,7 +27,7 @@ class _CustomListViewInProgressTasksState
       taskIcon: AppIcons.workIcon,
     ),
     InProgressTaskModel(
-      taskTitle: 'Personal Task',
+      taskTitle: TranslationKeys.personalTask.tr,
       taskDescription: 'Improve my English skills by trying to speek',
       taskColor: 0xFFCEEBDC,
       taskTitleColor: 0xFF6E6A7C,
@@ -33,7 +35,7 @@ class _CustomListViewInProgressTasksState
       taskIcon: AppIcons.personalIcon,
     ),
     InProgressTaskModel(
-      taskTitle: 'Home Task',
+      taskTitle: TranslationKeys.homeTask.tr,
       taskDescription: 'Add new feature for Do It app and commit it',
       taskColor: 0xFFFFE4F2,
       taskTitleColor: 0xFF6E6A7C,

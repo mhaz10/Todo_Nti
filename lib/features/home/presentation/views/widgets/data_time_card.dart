@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
 
 import '../../../../../core/utils/text_styles.dart';
@@ -58,7 +60,7 @@ class _DateTimeCardState extends State<DateTimeCard> {
             SvgPicture.asset(AppIcons.calendarIcon),
             SizedBox(width: 8.0),
             Text(
-              formattedDate != null && formattedTime != null ? '$formattedDate   $formattedTime' : 'End Time',
+              formattedDate != null && formattedTime != null ? '$formattedDate   $formattedTime' : TranslationKeys.endDate.tr,
               style: TextStyles.textStyle14.copyWith(
                 color: formattedDate != null && formattedTime != null ? Colors.black : Color(0xFFB7B7B7),
               ),

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
+import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_colors.dart';
 import 'package:todo_app_nti/core/widgets/custom_button.dart';
+import 'package:todo_app_nti/core/widgets/image_picker/image_manager_view.dart';
 import '../../../../../core/utils/app_assets.dart';
 import 'custom_drop_down.dart';
 import 'custom_task_field.dart';
@@ -27,27 +32,27 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 40),
-            Container(
-              width: 300,
-              height: 240,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  image: AssetImage(AppAssets.user),
-                  fit: BoxFit.fill,
+            ImageManagerView(
+                onPicked: (image) {
+                },
+              unPickedBody: Container(
+                width: AppResponsive.width(context, value: 300),
+                height: AppResponsive.width(context, value: 240),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                 ),
+                child: Icon(Icons.add, size: 50,),
               ),
             ),
             const SizedBox(height: 30),
             CustomTaskField(
-              hintText: 'Title',
+              hintText: TranslationKeys.title.tr,
               maxLines: 1,
               controller: titleController,
             ),
             const SizedBox(height: 20),
             CustomTaskField(
-              hintText: 'Description',
+              hintText: TranslationKeys.description.tr,
               controller: descriptionController,
             ),
             const SizedBox(height: 20),
@@ -69,7 +74,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
             ),
             const SizedBox(height: 20),
             CustomButton(
-              text: 'Add Task',
+              text: TranslationKeys.addTask.tr,
               color: AppColors.primary,
               isActive: isActive(),
               onTap: () {

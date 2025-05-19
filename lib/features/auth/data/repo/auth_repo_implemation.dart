@@ -1,4 +1,3 @@
-import 'package:cross_file/src/types/interface.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:todo_app_nti/core/network/api_helper.dart';
@@ -18,7 +17,6 @@ class AuthRepoImplementation implements AuthRepo {
 
   ApiHelper apiHelper = ApiHelper();
 
-  // TODO: Wrap api keys into separate file
 
   Future<Either<String, UserModel>> login({
     required String username,
@@ -64,7 +62,7 @@ class AuthRepoImplementation implements AuthRepo {
   Future<Either<String, void>> register({
     required String username,
     required String password,
-    required XFile? image,
+    required image,
   }) async {
     try {
       await apiHelper.postRequest(
