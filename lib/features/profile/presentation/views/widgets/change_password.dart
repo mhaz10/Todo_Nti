@@ -5,7 +5,6 @@ import 'package:todo_app_nti/core/utils/app_assets.dart';
 import 'package:todo_app_nti/core/widgets/custom_button.dart';
 import 'package:todo_app_nti/core/widgets/custom_text_form_field.dart';
 import 'package:todo_app_nti/features/home/presentation/manger/user/user_cubit.dart';
-import 'package:todo_app_nti/features/profile/data/repo/user_profile_repo.dart';
 import 'package:todo_app_nti/features/profile/presentation/manger/change_password/change_password_cubit.dart';
 import '../../../../../core/helper/app_responsive.dart';
 import '../../../../../core/translation/translation_keys.dart';
