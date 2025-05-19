@@ -8,6 +8,11 @@ import '../cache/cache_keys.dart';
 import 'ar.dart';
 import 'en.dart';
 
+enum AppLanguage {
+  arabic,
+  english,
+}
+
 class TranslationHelper implements Translations {
   @override
   Map<String, Map<String, String>> get keys => {
@@ -39,22 +44,26 @@ class TranslationHelper implements Translations {
     }
   }
 
-  static changeLanguage(bool isAr)async
+  static changeLanguage(AppLanguage language) async
   {
-    if(isAr)
-    {
-      await CacheHelper.saveData(
-          key: CacheKeys.langKey, value: CacheKeys.keyAR);
-      await Get.updateLocale(TranslationKeys.localeAR);
-      CacheData.lang = CacheKeys.keyAR;
-    }
-    else
-    {
-      await CacheHelper.saveData(
-          key: CacheKeys.langKey, value: CacheKeys.keyEN);
-      await Get.updateLocale(TranslationKeys.localeEN);
-      CacheData.lang = CacheKeys.keyEN;
-    }
+    switch (language) {
+      case AppLanguage.arabic:
+        await CacheHelper.saveData(
+          key: CacheKeys.langKey,
+          value: CacheKeys.keyAR,
+        );
+        await Get.updateLocale(TranslationKeys.localeAR);
+        CacheData.lang = CacheKeys.keyAR;
+        break;
 
+      case AppLanguage.english:
+        await CacheHelper.saveData(
+          key: CacheKeys.langKey,
+          value: CacheKeys.keyEN,
+        );
+        await Get.updateLocale(TranslationKeys.localeEN);
+        CacheData.lang = CacheKeys.keyEN;
+        break;
+    }
   }
 }

@@ -16,73 +16,70 @@ class _LanguageToggleState extends State<LanguageToggle> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        TranslationHelper.changeLanguage(!isEnglish);
-      },
-      child: Container(
-        width: 90,
-        height: 40,
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isEnglish = false;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: isEnglish ? Colors.grey[300] : Colors.green,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
-                    ),
+    return Container(
+      width: 90,
+      height: 40,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isEnglish = false;
+                });
+                TranslationHelper.changeLanguage(AppLanguage.arabic);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: isEnglish ? Colors.grey[300] : Colors.green,
+                  borderRadius: BorderRadiusDirectional.only(
+                    topStart: Radius.circular(12),
+                    bottomStart: Radius.circular(12),
                   ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'AR',
-                    style: TextStyle(
-                      color: isEnglish ? Colors.black : Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  'AR',
+                  style: TextStyle(
+                    color: isEnglish ? Colors.black : Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isEnglish = true;
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: isEnglish ? Colors.green : Colors.grey[300],
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  isEnglish = true;
+                });
+                TranslationHelper.changeLanguage(AppLanguage.english);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: isEnglish ? Colors.green : Colors.grey[300],
+                  borderRadius: BorderRadiusDirectional.only(
+                    topEnd: Radius.circular(12),
+                    bottomEnd: Radius.circular(12),
                   ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'EN',
-                    style: TextStyle(
-                      color: isEnglish ? Colors.white : Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  'EN',
+                  style: TextStyle(
+                    color: isEnglish ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

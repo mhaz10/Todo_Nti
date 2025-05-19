@@ -50,34 +50,38 @@ class _ChangePasswordState extends State<ChangePassword> {
                     UserCubit.get(context).userModel?.imagePath != null
                         ? Image.network(
                           UserCubit.get(context).userModel!.imagePath!,
+                          fit: BoxFit.cover,
                         )
-                        : Image.asset(AppAssets.user),
+                        : Image.asset(AppAssets.user, fit: BoxFit.cover),
               ),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.only(top: 30.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  CustomTextFormField(
-                    hintText: TranslationKeys.oldPassword.tr,
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 10),
-                  CustomTextFormField(
-                    hintText: TranslationKeys.newPassword.tr,
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 10),
-                  CustomTextFormField(
-                    hintText: TranslationKeys.confirmPassword.tr,
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 20),
-                  Builder(
-                    builder: (context) {
-                      return CustomButton(
+          body: Builder(
+            builder: (context) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      CustomTextFormField(
+                        controller: oldPasswordController,
+                        hintText: TranslationKeys.oldPassword.tr,
+                        isPassword: true,
+                      ),
+                      SizedBox(height: 10),
+                      CustomTextFormField(
+                        controller: newPasswordController,
+                        hintText: TranslationKeys.newPassword.tr,
+                        isPassword: true,
+                      ),
+                      SizedBox(height: 10),
+                      CustomTextFormField(
+                        controller: confirmPasswordController,
+                        hintText: TranslationKeys.confirmPassword.tr,
+                        isPassword: true,
+                      ),
+                      SizedBox(height: 20),
+                      CustomButton(
                         text: TranslationKeys.save.tr,
                         color: AppColors.primary,
                         onTap: () {
@@ -87,12 +91,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                             confirmPassWord: confirmPasswordController.text,
                           );
                         },
-                      );
-                    }
+                      )
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            }
           ),
         ),
       ),
