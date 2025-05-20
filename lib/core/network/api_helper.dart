@@ -130,7 +130,6 @@ class ApiHelper {
         )
     ));
   }
-
   Future<ApiResponse> putRequest({
     required String endPoint,
     Map<String, dynamic>? data,
@@ -148,5 +147,17 @@ class ApiHelper {
             }
         )
     ));
+  }
+  Future<ApiResponse> deleteRequest({required String endPoint, bool isProtected = false}) async {
+    return ApiResponse.fromResponse(
+      await dio.delete(
+        endPoint,
+        options: Options(
+          headers: {
+            if (isProtected) 'Authorization': 'Bearer ${CacheData.accessToken}'
+          }
+        )
+      )
+    );
   }
 }

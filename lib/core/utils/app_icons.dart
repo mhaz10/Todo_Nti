@@ -13,4 +13,5 @@ abstract class AppIcons
   static const String personalIcon = "${basePath}Personal_Icon.svg";
   static const String homeIcon = "${basePath}Home_Icon.svg";
   static const String workIcon = "${basePath}Work_Icon.svg";
+  static const String deleteIcon = "${basePath}delet.svg";
 }

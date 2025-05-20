@@ -24,7 +24,7 @@ class AddTaskView extends StatelessWidget {
         ),
         title: Text(TranslationKeys.addTask.tr),
       ),
-      body: AddTaskViewBody(),
+      body: const AddTaskViewBody(),
     );
   }
 }

@@ -27,6 +27,7 @@ abstract class TranslationKeys
   static const homeTask ="Home Task";
   static const addTask ="addTask";
   static const tasks ="Tasks";
+  static const editTask ="Edit Task";
   static const search ="Search...";
   static const results ="Results";
   static const done ="Done";
@@ -42,5 +43,7 @@ abstract class TranslationKeys
   static const oldPassword ="Old Password";
   static const newPassword ="New Password";
   static const confirmPassword ="Confirm Password";
+  static const language ="Language";
   static const save ="Save";
+  static const delete ="Delete";
 }

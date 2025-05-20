@@ -42,61 +42,64 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
       child: SizedBox(
         width: double.infinity,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ImageManagerView(
-                onPicked: (image) {
-                  this.image = image;
-                },
-                unPickedBody: Container(
-                  width: AppResponsive.width(context, value: 300),
-                  height: AppResponsive.width(context, value: 240),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              children: [
+                ImageManagerView(
+                  onPicked: (image) {
+                    this.image = image;
+                  },
+                  unPickedBody: Container(
+                    width: AppResponsive.width(context, value: 300),
+                    height: AppResponsive.width(context, value: 240),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(Icons.add, size: 50,),
                   ),
-                  child: Icon(Icons.add, size: 50,),
                 ),
-              ),
-              const SizedBox(height: 30),
-              CustomTaskField(
-                hintText: TranslationKeys.title.tr,
-                maxLines: 1,
-                controller: titleController,
-              ),
-              const SizedBox(height: 20),
-              CustomTaskField(
-                hintText: TranslationKeys.description.tr,
-                controller: descriptionController,
-              ),
-              const SizedBox(height: 20),
-              CustomDropdown(
-                onChanged: (value) {
-                  setState(() {
-                    groupValue = value;
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              DateTimeCard(
-                onDateTimeSelected: (date, time) {
-                  setState(() {
-                    selectedDate = date;
-                    selectedTime = time;
-                  });
-                },
-              ),
-              const SizedBox(height: 20),
-              CustomButton(
-                text: TranslationKeys.addTask.tr,
-                color: AppColors.primary,
-                isActive: isActive(),
-                onTap: () {
-                  if (isActive()) {
-                    UserCubit.get(context).addNewTask(title: titleController.text, description: descriptionController.text, image: image);
-                  }
-                },
-              ),
-            ],
+                const SizedBox(height: 30),
+                CustomTaskField(
+                  hintText: TranslationKeys.title.tr,
+                  maxLines: 1,
+                  controller: titleController,
+                ),
+                const SizedBox(height: 20),
+                CustomTaskField(
+                  hintText: TranslationKeys.description.tr,
+                  controller: descriptionController,
+                ),
+                const SizedBox(height: 20),
+                CustomDropdown(
+                  onChanged: (value) {
+                    setState(() {
+                      groupValue = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20),
+                DateTimeCard(
+                  onDateTimeSelected: (date, time) {
+                    setState(() {
+                      selectedDate = date;
+                      selectedTime = time;
+                    });
+                  },
+                ),
+                const SizedBox(height: 24),
+                CustomButton(
+                  text: TranslationKeys.addTask.tr,
+                  color: AppColors.primary,
+                  isActive: isActive(),
+                  onTap: () {
+                    if (isActive()) {
+                      UserCubit.get(context).addNewTask(title: titleController.text, description: descriptionController.text, image: image);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

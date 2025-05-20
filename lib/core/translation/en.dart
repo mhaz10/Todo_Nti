@@ -23,6 +23,7 @@ Map<String, String> en =
   TranslationKeys.homeTask: 'Home Task',
   TranslationKeys.addTask: 'Add Task',
   TranslationKeys.tasks: 'Tasks',
+  TranslationKeys.editTask: 'Edit Task',
   TranslationKeys.search: 'Search...',
   TranslationKeys.results: 'Results',
   TranslationKeys.done: 'Done',
@@ -39,4 +40,6 @@ Map<String, String> en =
   TranslationKeys.oldPassword: 'Old Password',
   TranslationKeys.newPassword: 'New Password',
   TranslationKeys.confirmPassword: 'Confirm Password',
+  TranslationKeys.language: 'Language',
+  TranslationKeys.delete: 'Delete',
 };

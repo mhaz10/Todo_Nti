@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_nti/features/home/data/models/tasks_model.dart';
+import 'package:todo_app_nti/features/home/data/models/update_task_model.dart';
 import '../../../../auth/data/models/login_model.dart';
 import '../../../data/repo/home_repo.dart';
 
@@ -63,6 +64,37 @@ class UserCubit extends Cubit<UserState> {
       },
           (tasks) {
         emit(GetTasksSuccessState(tasks: tasks));
+      },
+    );
+  }
+
+  void updateTasks({
+    required int id,
+    required String title,
+    required String description,
+    image,
+  }) async {
+    var response = await repo.updateTasks(id: id, title: title, description: description, image: image);
+
+    return response.fold(
+          (error) {
+        emit(UpdateTaskFailureState(error: error));
+      },
+          (updateTaskModel) {
+        emit(UpdateTaskSuccessState(tasks: updateTaskModel));
+      },
+    );
+  }
+
+  void deleteTasks({required int id}) async {
+    var response = await repo.deleteTasks(id: id);
+
+    return response.fold(
+          (error) {
+        emit(DeleteTaskFailureState(error: error));
+      },
+          (message) {
+        emit(DeleteTaskSuccessState(message: message));
       },
     );
   }

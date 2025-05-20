@@ -13,7 +13,6 @@ class TasksModel {
       tasks: json["tasks"] == null ? [] : List<SingleTaskModel>.from(json["tasks"]!.map((x) => SingleTaskModel.fromJson(x))),
     );
   }
-
 }
 
 class SingleTaskModel {

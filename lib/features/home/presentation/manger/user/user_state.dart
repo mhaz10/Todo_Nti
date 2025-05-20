@@ -40,3 +40,27 @@ final class GetTasksFailureState extends UserState {
 
   GetTasksFailureState({required this.error});
 }
+
+final class UpdateTaskSuccessState extends UserState {
+  final UpdateTaskModel tasks;
+
+  UpdateTaskSuccessState({required this.tasks});
+}
+
+final class UpdateTaskFailureState extends UserState {
+  final String error;
+
+  UpdateTaskFailureState({required this.error});
+}
+
+final class DeleteTaskSuccessState extends UserState {
+  final String message;
+
+  DeleteTaskSuccessState({required this.message});
+}
+
+final class DeleteTaskFailureState extends UserState {
+  final String error;
+
+  DeleteTaskFailureState({required this.error});
+}

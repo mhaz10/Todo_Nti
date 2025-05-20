@@ -84,6 +84,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       CustomButton(
                         text: TranslationKeys.save.tr,
                         color: AppColors.primary,
+
                         onTap: () {
                           ChangePasswordCubit.get(context).changeUserPassword(
                             oldPassWord: oldPasswordController.text,

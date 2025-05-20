@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
 
 import '../../../../../core/utils/text_styles.dart';
 
 class DateTimeCard extends StatefulWidget {
-  const DateTimeCard({super.key, this.onDateTimeSelected});
+  const DateTimeCard({super.key, this.onDateTimeSelected, this.initialDateAndTime});
 
   final Function(String formattedDate, String formattedTime)? onDateTimeSelected;
+  final String? initialDateAndTime;
 
   @override
   State<DateTimeCard> createState() => _DateTimeCardState();
@@ -18,6 +21,17 @@ class DateTimeCard extends StatefulWidget {
 class _DateTimeCardState extends State<DateTimeCard> {
   String? formattedDate;
   String? formattedTime;
+
+  @override
+  void initState() {
+    super.initState();
+    String input = widget.initialDateAndTime!;
+
+    DateTime parsedDateTime = DateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'").parseUtc(input);
+
+    formattedDate = DateFormat("dd MMM yyyy").format(parsedDateTime);
+    formattedTime = DateFormat("hh:mm a").format(parsedDateTime.toLocal());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +60,11 @@ class _DateTimeCardState extends State<DateTimeCard> {
         }
       },
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.9066,
-        height: MediaQuery.of(context).size.height * 0.0985,
+        width: AppResponsive.width(context, value: 331),
+        height: AppResponsive.height(context, value: 63),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade300, width: 2),
           color: Colors.white,
         ),
         child: Row(

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:todo_app_nti/features/home/data/models/tasks_model.dart';
+import 'package:todo_app_nti/features/home/data/models/update_task_model.dart';
 import 'package:todo_app_nti/features/home/data/repo/home_repo.dart';
 import '../../../../core/network/api_helper.dart';
 import '../../../../core/network/api_response.dart';
@@ -96,6 +97,54 @@ class HomeRepoImplementation implements HomeRepo {
         return Right(tasksList);
       } else {
         throw Exception('Get Task Failed\nTry Again later');
+      }
+    } catch (e) {
+      ApiResponse errorResponse = ApiResponse.fromError(e);
+      return Left(errorResponse.message);
+    }
+  }
+
+  @override
+  Future<Either<String, UpdateTaskModel>> updateTasks({required int id, required String title, required String description, image}) async {
+    try {
+      ApiResponse response = await apiHelper.putRequest(
+        endPoint: EndPoints.updateTask + id.toString(),
+        data: {
+          'title': title,
+          'description': description,
+          'image':
+          image == null
+              ? null
+              : await MultipartFile.fromFile(
+            image.path,
+            filename: image.name,
+          ),
+        },
+        isProtected: true,
+      );
+      if (response.status) {
+        UpdateTaskModel updateTaskModel = UpdateTaskModel.fromJson(response.data);
+        return Right(updateTaskModel);
+      } else {
+        throw Exception('Update Task Failed\nTry Again later');
+      }
+    } catch (e) {
+      ApiResponse errorResponse = ApiResponse.fromError(e);
+      return Left(errorResponse.message);
+    }
+  }
+
+  @override
+  Future<Either<String, String>> deleteTasks({required int id}) async {
+    try {
+      ApiResponse response = await apiHelper.deleteRequest(
+        endPoint: EndPoints.updateTask + id.toString(),
+        isProtected: true,
+      );
+      if (response.status) {
+        return Right(response.message);
+      } else {
+        throw Exception('Delete Task Failed\nTry Again later');
       }
     } catch (e) {
       ApiResponse errorResponse = ApiResponse.fromError(e);

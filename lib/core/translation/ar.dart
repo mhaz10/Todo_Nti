@@ -24,6 +24,7 @@ Map<String, String> ar = {
   TranslationKeys.homeTask: 'مهام منزلية',
   TranslationKeys.addTask: 'اضافة مهمة',
   TranslationKeys.tasks: 'المهام',
+  TranslationKeys.editTask: 'تعديل المهمة',
   TranslationKeys.search: 'بحث...',
   TranslationKeys.results: 'نتائج',
   TranslationKeys.done: 'منجز',
@@ -39,5 +40,7 @@ Map<String, String> ar = {
   TranslationKeys.oldPassword: 'كلمة المرور القديمة',
   TranslationKeys.newPassword: 'كلمة المرور الجديدة',
   TranslationKeys.confirmPassword: 'تأكيد كلمة المرور',
+  TranslationKeys.language: 'اللغة',
   TranslationKeys.save: 'حفظ',
+  TranslationKeys.delete: 'حذف',
 };

@@ -28,51 +28,49 @@ class _CustomDropdownState extends State<CustomDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Container(
-        width: AppResponsive.width(context, value: 340),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.grey, width: 2),
-          color: AppColors.white,
-        ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
-            hint: Text(
-              TranslationKeys.group.tr,
-              style: TextStyles.textStyle14.copyWith(color: AppColors.grey),
-            ),
-            value: selectedValue,
-            isExpanded: true,
-            icon: Icon(Icons.keyboard_arrow_down),
-            onChanged: (value) {
-              setState(() {
-                selectedValue = value;
-              });
-              widget.onChanged?.call(value);
-            },
-            items:
-                items.map((item) {
-                  return DropdownMenuItem<String>(
-                    value: item['label'],
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: SvgPicture.asset(item['icon']),
-                        ),
-                        SizedBox(width: 10),
-                        Text(item['label'], style: TextStyles.textStyle14),
-                      ],
-                    ),
-                  );
-                }).toList(),
+    return Container(
+      width: AppResponsive.width(context, value: 331),
+      height: AppResponsive.height(context, value: 63),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: AppColors.white,
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          dropdownColor: AppColors.white,
+          hint: Text(
+            TranslationKeys.group.tr,
+            style: TextStyles.textStyle14.copyWith(color: AppColors.grey),
           ),
+          value: selectedValue,
+          isExpanded: true,
+          icon: Icon(Icons.keyboard_arrow_down),
+          onChanged: (value) {
+            setState(() {
+              selectedValue = value;
+            });
+            widget.onChanged?.call(value);
+          },
+          items:
+              items.map((item) {
+                return DropdownMenuItem<String>(
+                  value: item['label'],
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SvgPicture.asset(item['icon']),
+                      ),
+                      SizedBox(width: 10),
+                      Text(item['label'], style: TextStyles.textStyle14),
+                    ],
+                  ),
+                );
+              }).toList(),
         ),
       ),
     );
