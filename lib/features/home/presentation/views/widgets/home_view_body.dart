@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:todo_app_nti/core/helper/app_navigator.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
+import 'package:todo_app_nti/features/home/presentation/manger/user/user_cubit.dart';
 import 'package:todo_app_nti/features/home/presentation/views/tasks_view.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/task_counter.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/task_groups.dart';
@@ -48,6 +49,7 @@ class HomeViewBody extends StatelessWidget {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
+                        UserCubit.get(context).getTasks();
                         AppNavigator.goTo(screen: TasksView());
                       },
                       child: Container(

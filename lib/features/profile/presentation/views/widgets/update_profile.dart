@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:todo_app_nti/core/helper/app_navigator.dart';
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_colors.dart';
 import 'package:todo_app_nti/core/utils/app_toast.dart';
@@ -33,6 +34,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
         listener: (context, state) {
           if (state is UserProfileSuccessState) {
             AppToast.showSuccessToast(state.message);
+            UserCubit.get(context).getUserDataFromAPI();
+            Navigator.pop(context);
           } else if (state is UserProfileFailureState) {
             AppToast.showErrorToast(state.error);
           }
@@ -68,7 +71,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         text: TranslationKeys.update.tr,
                         onTap: () {
                           UserProfileCubit.get(context).updateUserProfile(name: usernameController.text, imagePath: image);
-                          UserCubit.get(context).getUserDataFromAPI();
+
                       },),
                     ],
                   ),

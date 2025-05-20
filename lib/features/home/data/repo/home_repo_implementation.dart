@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:todo_app_nti/features/home/data/models/tasks_model.dart';
 import 'package:todo_app_nti/features/home/data/repo/home_repo.dart';
 import '../../../../core/network/api_helper.dart';
 import '../../../../core/network/api_response.dart';
@@ -70,6 +71,31 @@ class HomeRepoImplementation implements HomeRepo {
         }
       } else {
         throw Exception('Add Task Failed\nTry Again later');
+      }
+    } catch (e) {
+      ApiResponse errorResponse = ApiResponse.fromError(e);
+      return Left(errorResponse.message);
+    }
+  }
+
+  @override
+  Future<Either<String, List<SingleTaskModel>>> getTasks() async {
+    try {
+      ApiResponse response = await apiHelper.getRequest(
+        endPoint: EndPoints.getTasks,
+        isProtected: true,
+      );
+
+      TasksModel tasksModel = TasksModel.fromJson(response.data);
+      List<SingleTaskModel> tasksList = [];
+
+      if (tasksModel.status != null) {
+        if (tasksModel.tasks.isNotEmpty) {
+          tasksModel.tasks.forEach((element) => tasksList.add(element),);
+        }
+        return Right(tasksList);
+      } else {
+        throw Exception('Get Task Failed\nTry Again later');
       }
     } catch (e) {
       ApiResponse errorResponse = ApiResponse.fromError(e);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_nti/features/home/data/models/tasks_model.dart';
 import '../../../../auth/data/models/login_model.dart';
 import '../../../data/repo/home_repo.dart';
 
@@ -28,13 +29,14 @@ class UserCubit extends Cubit<UserState> {
         return false;
       },
       (userModel) {
+        this.userModel = userModel;
         emit(UserSuccessState(userModel: userModel));
         return true;
       },
     );
   }
 
-  Future<void> addNewTask({
+  void addNewTask({
     required String title,
     required String description,
     image,
@@ -47,6 +49,20 @@ class UserCubit extends Cubit<UserState> {
       },
           (message) {
         emit(AddNewTaskSuccessState(message: message));
+      },
+    );
+  }
+
+
+  void getTasks () async {
+    var response = await repo.getTasks();
+
+    return response.fold(
+          (error) {
+        emit(GetTasksFailureState(error: error));
+      },
+          (tasks) {
+        emit(GetTasksSuccessState(tasks: tasks));
       },
     );
   }

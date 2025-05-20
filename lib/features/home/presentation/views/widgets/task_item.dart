@@ -3,11 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/utils/app_assets.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
+import 'package:todo_app_nti/features/home/data/models/tasks_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/text_styles.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key});
+  const TaskItem({super.key, required this.task});
+
+  final SingleTaskModel task;
 
   @override
   Widget build(BuildContext context) {
@@ -21,44 +24,39 @@ class TaskItem extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       child: Row(
         children: [
+          if (task.imagePath != null)
           Container(
             height: AppResponsive.height(context, value: 60),
             width: AppResponsive.width(context, value: 60),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
-                image: AssetImage(AppAssets.user),
+                image: NetworkImage(task.imagePath),
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.black.withAlpha(64),
-                  spreadRadius: 0,
-                  blurRadius: 4,
-                  offset: const Offset(0, 4),
-                )
-              ]
             ),
           ),
+          if (task.imagePath != null)
           const SizedBox(width: 10,),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Go to supermarket to buy some milk & eggs', style: TextStyles.textStyle14),
+                Text(task.title!, style: TextStyles.textStyle14),
                 const SizedBox(height: 4,),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Color(0xFFCEEBDC),
+                          color: AppColors.primary,
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Text('In Progress', style: TextStyles.textStyle12),
                       ),
-                      SvgPicture.asset(AppIcons.homeIcon, width: 5, height: 5,)
+                      SizedBox(width: 5,),
+                      SvgPicture.asset(AppIcons.homeIcon,)
                     ],
                   ),
                 )

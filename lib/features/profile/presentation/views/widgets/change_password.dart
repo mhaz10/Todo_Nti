@@ -32,6 +32,7 @@ class _ChangePasswordState extends State<ChangePassword> {
         listener: (context, state) {
           if (state is ChangePasswordSuccessState) {
             AppToast.showSuccessToast(state.message);
+            Navigator.pop(context);
           } else if (state is ChangePasswordFailureState) {
             AppToast.showErrorToast(state.error);
           }

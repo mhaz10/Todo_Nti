@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:todo_app_nti/core/helper/app_responsive.dart';
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_colors.dart';
@@ -25,7 +26,7 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
   String? groupValue;
   String? selectedDate;
   String? selectedTime;
-  String? image;
+  XFile? image;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,9 @@ class _AddTaskViewBodyState extends State<AddTaskViewBody> {
           child: Column(
             children: [
               ImageManagerView(
-                onPicked: (image) {},
+                onPicked: (image) {
+                  this.image = image;
+                },
                 unPickedBody: Container(
                   width: AppResponsive.width(context, value: 300),
                   height: AppResponsive.width(context, value: 240),

@@ -28,3 +28,15 @@ final class AddNewTaskFailureState extends UserState {
 
   AddNewTaskFailureState({required this.error});
 }
+
+final class GetTasksSuccessState extends UserState {
+  final List<SingleTaskModel> tasks;
+
+  GetTasksSuccessState({required this.tasks});
+}
+
+final class GetTasksFailureState extends UserState {
+  final String error;
+
+  GetTasksFailureState({required this.error});
+}
