@@ -46,4 +46,5 @@ abstract class TranslationKeys
   static const language ="Language";
   static const save ="Save";
   static const delete ="Delete";
+  static const logOut ="Log Out";
 }

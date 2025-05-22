@@ -42,4 +42,5 @@ Map<String, String> en =
   TranslationKeys.confirmPassword: 'Confirm Password',
   TranslationKeys.language: 'Language',
   TranslationKeys.delete: 'Delete',
+  TranslationKeys.logOut: 'Log Out',
 };

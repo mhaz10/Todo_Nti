@@ -61,7 +61,7 @@ class _EditTaskViewBodyState extends State<EditTaskViewBody> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('In Progress', style: TextStyles.textStyle16),
+                        Text(TranslationKeys.inProgress.tr, style: TextStyles.textStyle16),
                         const SizedBox(height: 5),
                         const Text('Believe you can, and you\'re halfway there.', style: TextStyles.textStyle16),
                       ],

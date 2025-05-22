@@ -43,4 +43,5 @@ Map<String, String> ar = {
   TranslationKeys.language: 'اللغة',
   TranslationKeys.save: 'حفظ',
   TranslationKeys.delete: 'حذف',
+  TranslationKeys.logOut: 'تسجيل الخروج',
 };

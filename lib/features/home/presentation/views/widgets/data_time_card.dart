@@ -25,12 +25,9 @@ class _DateTimeCardState extends State<DateTimeCard> {
   @override
   void initState() {
     super.initState();
-    String input = widget.initialDateAndTime!;
-
-    DateTime parsedDateTime = DateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'").parseUtc(input);
-
-    formattedDate = DateFormat("dd MMM yyyy").format(parsedDateTime);
-    formattedTime = DateFormat("hh:mm a").format(parsedDateTime.toLocal());
+    if (widget.initialDateAndTime != null) {
+      getInitialDateAndTime();
+    }
   }
 
   @override
@@ -82,6 +79,15 @@ class _DateTimeCardState extends State<DateTimeCard> {
         ),
       ),
     );
+  }
+
+  void getInitialDateAndTime () {
+    String input = widget.initialDateAndTime!;
+
+    DateTime parsedDateTime = DateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'").parseUtc(input);
+
+    formattedDate = DateFormat("dd MMM yyyy").format(parsedDateTime);
+    formattedTime = DateFormat("hh:mm a").format(parsedDateTime.toLocal());
   }
 
   String getMonthName(int month) {

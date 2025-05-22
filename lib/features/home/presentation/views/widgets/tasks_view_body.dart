@@ -21,23 +21,27 @@ class TasksViewBody extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is GetTasksSuccessState) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                children: [
-                  CustomSearchTask(),
-                  const SizedBox(height: 30,),
-                  TaskCounter(
-                    taskTitle: TranslationKeys.results.tr, taskCount: state.tasks.length,),
-                  const SizedBox(height: 30,),
-                  TasksListView(
-                    tasks: state.tasks,
-                  )
-                ],
+          if (state.tasks.length > 0) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  children: [
+                    CustomSearchTask(),
+                    const SizedBox(height: 30,),
+                    TaskCounter(
+                      taskTitle: TranslationKeys.results.tr, taskCount: state.tasks.length,),
+                    const SizedBox(height: 30,),
+                    TasksListView(
+                      tasks: state.tasks,
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            return TasksBuilderFailure();
+          }
         } else if (state is GetTasksFailureState) {
           return TasksBuilderFailure();
         }

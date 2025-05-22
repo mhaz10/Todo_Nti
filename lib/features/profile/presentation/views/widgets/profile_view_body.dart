@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_app_nti/core/cache/%20cache_helper.dart';
+import 'package:todo_app_nti/core/cache/cache_data.dart';
+import 'package:todo_app_nti/core/cache/cache_keys.dart';
 import 'package:todo_app_nti/core/helper/app_navigator.dart';
 import 'package:todo_app_nti/core/translation/translation_keys.dart';
 import 'package:todo_app_nti/core/utils/app_icons.dart';
+import 'package:todo_app_nti/features/auth/presentation/views/login_view.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/change_password.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/custom_profile_button.dart';
 import 'package:todo_app_nti/features/profile/presentation/views/widgets/settings.dart';
@@ -40,6 +44,16 @@ class ProfileViewBody extends StatelessWidget {
               text: TranslationKeys.settings.tr,
               onTap: () {
                 AppNavigator.goTo(screen: Settings());
+              },
+            ),
+            SizedBox(height: 16),
+            CustomProfileButton(
+              icon: AppIcons.lockIcon,
+              text: TranslationKeys.logOut.tr,
+              onTap: () {
+                CacheHelper.removeData(key: CacheKeys.accessToken);
+                CacheHelper.removeData(key: CacheKeys.refreshToken);
+                AppNavigator.goTo(screen: LoginView());
               },
             ),
           ],
