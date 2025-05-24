@@ -42,27 +42,33 @@ class UserCubit extends Cubit<UserState> {
     required String description,
     image,
   }) async {
-    var response = await repo.addNewTask(title: title, description: description, image: image);
+    var response = await repo.addNewTask(
+      title: title,
+      description: description,
+      image: image,
+    );
 
     return response.fold(
-          (error) {
+      (error) {
         emit(AddNewTaskFailureState(error: error));
       },
-          (message) {
+      (message) {
         emit(AddNewTaskSuccessState(message: message));
       },
     );
   }
 
+  List<SingleTaskModel> tasks = [];
 
-  void getTasks () async {
+  void getTasks() async {
     var response = await repo.getTasks();
 
     return response.fold(
-          (error) {
+      (error) {
         emit(GetTasksFailureState(error: error));
       },
-          (tasks) {
+      (tasks) {
+        this.tasks = tasks;
         emit(GetTasksSuccessState(tasks: tasks));
       },
     );
@@ -74,13 +80,18 @@ class UserCubit extends Cubit<UserState> {
     required String description,
     image,
   }) async {
-    var response = await repo.updateTasks(id: id, title: title, description: description, image: image);
+    var response = await repo.updateTasks(
+      id: id,
+      title: title,
+      description: description,
+      image: image,
+    );
 
     return response.fold(
-          (error) {
+      (error) {
         emit(UpdateTaskFailureState(error: error));
       },
-          (updateTaskModel) {
+      (updateTaskModel) {
         emit(UpdateTaskSuccessState(tasks: updateTaskModel));
       },
     );
@@ -90,10 +101,10 @@ class UserCubit extends Cubit<UserState> {
     var response = await repo.deleteTasks(id: id);
 
     return response.fold(
-          (error) {
+      (error) {
         emit(DeleteTaskFailureState(error: error));
       },
-          (message) {
+      (message) {
         emit(DeleteTaskSuccessState(message: message));
       },
     );

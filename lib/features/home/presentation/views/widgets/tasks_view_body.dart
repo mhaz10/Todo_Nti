@@ -10,38 +10,58 @@ import 'package:todo_app_nti/features/home/presentation/views/widgets/task_count
 import 'package:todo_app_nti/features/home/presentation/views/widgets/tasks_builder_failure.dart';
 import 'package:todo_app_nti/features/home/presentation/views/widgets/tasks_list_view.dart';
 
-class TasksViewBody extends StatelessWidget {
+import '../../../data/models/tasks_model.dart';
+
+class TasksViewBody extends StatefulWidget {
   const TasksViewBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
-      listener: (context, state) {
+  State<TasksViewBody> createState() => _TasksViewBodyState();
+}
 
-      },
+class _TasksViewBodyState extends State<TasksViewBody> {
+  List<SingleTaskModel> searchedTasks = [];
+
+  void searchTask(String query) {
+    final filtered =
+    UserCubit.get(context).tasks.where((task) {
+      final title = task.title?.toLowerCase() ?? '';
+      final description = task.description?.toLowerCase() ?? '';
+      return title.contains(query.toLowerCase()) ||
+          description.contains(query.toLowerCase());
+    }).toList();
+
+    setState(() {
+      searchedTasks = filtered;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        if (state is GetTasksSuccessState) {
-          if (state.tasks.length > 0) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  children: [
-                    CustomSearchTask(),
-                    const SizedBox(height: 30,),
-                    TaskCounter(
-                      taskTitle: TranslationKeys.results.tr, taskCount: state.tasks.length,),
-                    const SizedBox(height: 30,),
-                    TasksListView(
-                      tasks: state.tasks,
-                    )
-                  ],
-                ),
+        if (UserCubit.get(context).tasks.isNotEmpty) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  CustomSearchTask(
+                    onChanged: (value) {
+                      searchTask(value);
+                    },
+                  ),
+                  const SizedBox(height: 30,),
+                  TaskCounter(
+                    taskTitle: TranslationKeys.results.tr, taskCount: searchedTasks.isNotEmpty ? searchedTasks.length : UserCubit.get(context).tasks.length,),
+                  const SizedBox(height: 30,),
+                  TasksListView(
+                    tasks: searchedTasks.isNotEmpty ? searchedTasks : UserCubit.get(context).tasks,
+                  )
+                ],
               ),
-            );
-          } else {
-            return TasksBuilderFailure();
-          }
+            ),
+          );
         } else if (state is GetTasksFailureState) {
           return TasksBuilderFailure();
         }

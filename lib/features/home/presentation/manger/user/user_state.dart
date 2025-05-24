@@ -64,3 +64,9 @@ final class DeleteTaskFailureState extends UserState {
 
   DeleteTaskFailureState({required this.error});
 }
+
+final class GetSearchedTasksSuccessState extends UserState {
+  final List<SingleTaskModel> tasks;
+
+  GetSearchedTasksSuccessState({required this.tasks});
+}
